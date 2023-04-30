@@ -1,0 +1,33 @@
+version: "3"
+services:
+  nano:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - "nano-postgres"
+      - "nano-redis"
+    environment:
+      DB_NAME: ${DB_NAME?err}
+      DB_HOST: ${DB_HOST?err}
+      DB_PASSWORD: ${DB_PASSWORD?err}
+      DB_USERNAME: ${DB_USERNAME?err}
+
+      APP_PORT: ${APP_PORT?err}
+      JWT_SECRET: ${JWT_SECRET?err}
+      PASSWORD_SALT: ${PASSWORD_SALT?err}
+
+      REDIS_HOST: ${REDIS_HOST?err}
+
+      NODE_ENV: development
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+
+  nano-postgres:
+    image: "postgres:13.1-alpine"
+    environment:
+      POSTGRES_DB: ${DB_NAME?err}
+      POSTGRES_PASSWORD: ${DB_PASSWORD?err}
+
+  nano-redis:
+    image: "redis:6.2-rc1-alpine"

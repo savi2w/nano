@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "baseUrl": "src",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "lib": ["ES6"],
+    "module": "CommonJS",
+    "outDir": "build",
+    "paths": {
+      "*": ["*"]
+    },
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }],
+    "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "target": "ES2019"
+  },
+  "exclude": ["*.spec.ts", "*.test.ts"],
+  "include": ["src/**/*"]
+}
